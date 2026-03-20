@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: workpal_postgres
+    environment:
+      POSTGRES_DB: workpal
+      POSTGRES_USER: chocho
+      POSTGRES_PASSWORD: chocho123
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: workpal_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Database/.env:/app/Database/.env
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://tu_usuario:tu_password@postgres:5432/workpal
+
+volumes:
+  pgdata:
