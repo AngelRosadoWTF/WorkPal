@@ -8,12 +8,9 @@ from Backed.Workpal.Database.Models.Alumnos import Alumno
 from Backed.Workpal.Database.Models.Proyectos import Proyecto
 from Backed.Workpal.Database.Models.Alumnos import Base
 
-
 app = FastAPI()
-
 
 # Crear las tablas en la base de datos
 Base.metadata.create_all(engine)
 
 app.include_router(alumnos_router)
-

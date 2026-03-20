@@ -20,8 +20,6 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-
-
 @router.post("/", response_model=AlumnoResponse)
 def create_alumno(alumno: AlumnoCreate,query = Query(default=None,description="Creacion de un alumno")):
     db = SessionLocal()

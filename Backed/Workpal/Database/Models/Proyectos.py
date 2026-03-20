@@ -20,11 +20,3 @@ class Proyecto(Base):
         secondary="ProyectoAlumno",
         back_populates="lista_proyectos"
     )
-
-
-
-
-
-
-
-
