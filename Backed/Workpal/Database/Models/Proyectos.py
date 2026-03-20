@@ -1,4 +1,5 @@
 from datetime import datetime
+from pydantic import BaseModel
 from sqlalchemy import Integer, String, Text, DateTime, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .base import Base
@@ -20,3 +21,24 @@ class Proyecto(Base):
         secondary="ProyectoAlumno",
         back_populates="lista_proyectos"
     )
+
+class ProyectoCreate(BaseModel):
+    name: str
+    skill: str
+    description: str
+    start: datetime | None = None
+    end: datetime | None = None
+    image: str | None = None
+
+
+class ProyectoResponse(BaseModel):
+    id: int
+    name: str
+    skill: str
+    description: str
+    start: datetime
+    end: datetime
+    image: str | None = None
+
+    class Config:
+        from_attributes = True
